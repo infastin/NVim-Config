@@ -34,7 +34,7 @@ tnoremap <C-v> <C-\><C-n>"+pi
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-Tab> <C-\><C-n><C-w>w
 tnoremap <C-S-Tab> <C-\><C-n><C-w>W
-tnoremap <silent> <C-b> <C-\><C-n>:NERDTreeToggle<CR>
+tnoremap <silent> <C-b> <C-\><C-n>:NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
 tnoremap <silent> <C-N> <C-\><C-n>:call <SID>ToggleTerminal()<CR>
 
 nnoremap <silent> <C-N> :call <SID>ToggleTerminal()<CR>
