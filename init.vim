@@ -6,10 +6,9 @@ call plug#begin("~/.vim/plugged")
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'joshdick/onedark.vim'
 	Plug 'jackguo380/vim-lsp-cxx-highlight'
-	Plug 'lervag/vimtex'
 	Plug 'honza/vim-snippets'
 	Plug 'preservim/nerdtree'
-	Plug 'tpope/vim-fugitive'
+	Plug 'jonsmithers/vim-html-template-literals'
 call plug#end()
 
 syntax on
@@ -48,15 +47,7 @@ let g:NERDTreeStatusLine = ''
 let g:NERDTreeMinimalUI = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
 let g:coc_snippet_next = '<tab>'
-let g:vimtex_compiler_latexmk = {
-    \ 'options' : [
-	\ 	'-pvc',
-    \ ],
-    \}
 
 vmap <C-c> "+yi
 vmap <C-v> c<C-\><C-n>"+p=`]`]
@@ -69,7 +60,7 @@ imap <C-v> <C-\><C-n>"+p=`]`]a
 imap <C-z> <C-\><C-n>ui<right>
 imap <C-y> <C-\><C-n><C-r>$i<right>
 imap <C-f> <C-\><C-n>:/
-imap <C-a> <C-\><C-n>ggVR<CR>
+imap <C-s> <C-\><C-n><S-s>
 nmap <C-f> :/
 nmap <TAB> v>
 nmap <S-TAB> v<
@@ -97,7 +88,7 @@ map <leader>ac  <Plug>(coc-codeaction)
 nnoremap <silent> <RightMouse> :call GuiShowContextMenu()<CR>
 nnoremap <silent> <C-,> :tabnew<CR>
 nnoremap <silent> <C-.> :tabclose<CR>
-nnoremap <silent> <C-b> :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
+nnoremap <silent> <C-b> :NERDTreeToggleVCS<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
@@ -121,9 +112,7 @@ inoremap <silent> <expr> <TAB>
       \ coc#refresh()
 
 command! -nargs=0 Format :call CocAction('format')
-
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 function! s:check_back_space() abort
@@ -141,6 +130,7 @@ endfunction
 
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+au FileType scss setl iskeyword+=@-@
 
 augroup mygroup
   autocmd!
