@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "coc-clangd": ">=0.9.0",
+    "coc-css": ">=1.2.6",
+    "coc-pairs": ">=1.2.23",
+    "coc-snippets": ">=2.4.0",
+    "coc-tsserver": ">=1.6.8"
+  }
+}
